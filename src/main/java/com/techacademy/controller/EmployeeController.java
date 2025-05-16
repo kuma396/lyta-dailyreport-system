@@ -98,6 +98,14 @@ public class EmployeeController {
         return "redirect:/employees";
     }
 
+    // 従業員更新画面
+    @GetMapping(value = "/{code}/update")
+    public String update(@ModelAttribute Employee employee) {
+
+        return "employees/update";
+    }
+
+
     // 従業員削除処理
     @PostMapping(value = "/{code}/delete")
     public String delete(@PathVariable("code") String code, @AuthenticationPrincipal UserDetail userDetail, Model model) {
