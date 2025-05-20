@@ -100,13 +100,14 @@ public class EmployeeController {
 
     // 従業員更新画面
     @GetMapping(value = "/{code}/update")
-    public String update(@ModelAttribute Employee employee) {
+    public String update(@PathVariable("code") String code, Model model) {
+        model.addAttribute("employee", employeeService.findByCode(code));
 
         return "employees/update";
     }
 
     // 従業員更新処理
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/{code}/update")
     public String updateUser(@Validated Employee employee, BindingResult res, Model model) {
 
         // パスワード空白チェック
@@ -148,6 +149,11 @@ public class EmployeeController {
     }
 
 
+
+    private String update(Employee employee) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
 
     // 従業員削除処理
     @PostMapping(value = "/{code}/delete")
